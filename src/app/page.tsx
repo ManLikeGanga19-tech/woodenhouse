@@ -1,42 +1,24 @@
-import Image from "next/image";
+import { getHeroImages } from "@/lib/hero-img"
+import Hero from "@/components/sections/Hero"
+import Steps from "@/components/sections/Steps"
+import About from "@/components/sections/About"
+import Services from "@/components/sections/Services"
+import WhyChooseUs from "@/components/sections/Why"
+import Projects from "@/components/sections/Project"
 
 export default function Home() {
+  const images = getHeroImages()  // Load hero images server-side
+
   return (
     <div className="flex flex-col w-full">
 
       {/* HERO SECTION */}
-      <section>
-        <h1 className="text-4xl font-bold text-center mt-20">
-          Wooden Houses Kenya
-        </h1>
-      </section>
-
-      {/* Abbout Us */}
-      <section className="mt-32 px-6 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-semibold mb-6">About Us</h2>
-        {/* Component: <About Us /> */}
-      </section>
-
-      {/* SERVICES */}
-      <section className="mt-32 px-6 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-semibold mb-6">Services</h2>
-
-        {/* Component: <Services /> */}
-      </section>
-
-      {/* Why Us */}
-      <section className="mt-32 px-6 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-semibold mb-6">Why Choose Us</h2>
-
-        {/* Component: <Why /> */}
-      </section>
-
-      {/* Our Projects */}
-      <section className="mt-32 px-6 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-semibold mb-6">Our Projects</h2>
-
-        {/* Component: <Projects /> */}
-      </section>
+      <Hero images={images} />
+      <Steps />
+      <About />
+      <Services />
+      <WhyChooseUs />
+      <Projects />
 
     </div>
   )
