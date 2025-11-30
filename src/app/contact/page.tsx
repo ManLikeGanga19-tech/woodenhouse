@@ -1,14 +1,504 @@
+"use client"
+
+import { useState } from "react"
+import Image from "next/image"
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import { Checkbox } from "@/components/ui/checkbox"
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import {
+    MapPin,
+    Phone,
+    Mail,
+    Clock,
+    Send,
+    MessageSquare,
+    Home,
+    Hammer,
+    CheckCircle2,
+    Facebook,
+    Instagram,
+    Twitter,
+    Youtube
+} from "lucide-react"
+import Link from "next/link"
+
 export default function ContactPage() {
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        serviceType: "",
+        projectLocation: "",
+        budget: "",
+        timeline: "",
+        message: "",
+        newsletter: false,
+    })
+
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        setIsSubmitting(true)
+
+        // Simulate form submission
+        setTimeout(() => {
+            setIsSubmitting(false)
+            setSubmitStatus("success")
+
+            // Reset form after 3 seconds
+            setTimeout(() => {
+                setSubmitStatus("idle")
+                setFormData({
+                    firstName: "",
+                    lastName: "",
+                    email: "",
+                    phone: "",
+                    serviceType: "",
+                    projectLocation: "",
+                    budget: "",
+                    timeline: "",
+                    message: "",
+                    newsletter: false,
+                })
+            }, 3000)
+        }, 2000)
+    }
+
+    const contactInfo = [
+        {
+            icon: <MapPin size={28} style={{ color: "#8B5E3C" }} />,
+            title: "Visit Our Office",
+            details: ["Naivasha, Kenya", "Open for site visits by appointment"],
+            link: null
+        },
+        {
+            icon: <Phone size={28} style={{ color: "#8B5E3C" }} />,
+            title: "Call Us",
+            details: ["+254 716 111 187", "+254 789 104 438"],
+            link: "tel:+254716111187"
+        },
+        {
+            icon: <Mail size={28} style={{ color: "#8B5E3C" }} />,
+            title: "Email Us",
+            details: ["info@woodenhouseskenya.com", "We reply within 24 hours"],
+            link: "mailto:info@woodenhouseskenya.com"
+        },
+        {
+            icon: <Clock size={28} style={{ color: "#8B5E3C" }} />,
+            title: "Working Hours",
+            details: ["Monday - Friday: 8AM - 6PM", "Saturday: 9AM - 4PM"],
+            link: null
+        },
+    ]
+
+    const services = [
+        { value: "wooden-house", label: "Wooden House Construction", icon: <Home size={20} /> },
+        { value: "carpentry", label: "General Carpentry", icon: <Hammer size={20} /> },
+        { value: "consultation", label: "Design Consultation", icon: <MessageSquare size={20} /> },
+        { value: "other", label: "Other Services", icon: <CheckCircle2 size={20} /> },
+    ]
+
     return (
-        <div className="min-h-screen bg-white">
-            <div className="max-w-7xl mx-auto px-6 py-12">
-                <h1 className="text-4xl font-bold text-brand-brown mb-6">
-                    Contact Us
-                </h1>
-                <p className="text-gray-700 text-lg">
-                    Get in touch with us for your wooden house project.
-                </p>
+        <div className="min-h-screen bg-white w-full max-w-full overflow-hidden">
+
+            {/* ======================== PAGE HEADER ======================== */}
+            <div className="relative w-full py-8 sm:py-12 border-b border-gray-200 overflow-hidden">
+                <Image
+                    src="/contact/contact-header1.jpg"
+                    alt="Contact Background"
+                    fill
+                    className="object-cover object-center"
+                    priority
+                />
+
+                <div className="absolute inset-0 bg-black/40" />
+
+                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+                    <h1
+                        className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4"
+                        style={{ color: "#C49A6C" }}
+                        data-aos="fade-down"
+                    >
+                        Contact Us
+                    </h1>
+
+                    <Breadcrumb>
+                        <BreadcrumbList className="text-white/90 text-sm sm:text-base">
+                            <BreadcrumbItem>
+                                <BreadcrumbLink href="/" className="hover:text-[#C49A6C] transition">
+                                    Home
+                                </BreadcrumbLink>
+                            </BreadcrumbItem>
+
+                            <BreadcrumbSeparator className="text-white/90" />
+
+                            <BreadcrumbItem>
+                                <BreadcrumbLink
+                                    href="/contact"
+                                    className="text-[#C49A6C] font-medium"
+                                >
+                                    Contact
+                                </BreadcrumbLink>
+                            </BreadcrumbItem>
+                        </BreadcrumbList>
+                    </Breadcrumb>
+                </div>
+            </div>
+
+            {/* ======================== PAGE CONTENT ======================== */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
+
+                {/* INTRO */}
+                <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16" data-aos="fade-up">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6" style={{ color: "#8B5E3C" }}>
+                        Let's Build Something Amazing Together
+                    </h2>
+                    <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                        Whether you're planning a new wooden house, need custom carpentry, or want to discuss
+                        your project ideas, our team is here to help. Fill out the form below and we'll get
+                        back to you within 24 hours.
+                    </p>
+                </div>
+
+                {/* CONTACT INFO CARDS */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 sm:mb-20">
+                    {contactInfo.map((info, index) => (
+                        <Card
+                            key={index}
+                            className="border-2 border-gray-100 hover:border-[#8B5E3C] transition-all duration-300 hover:shadow-lg"
+                            data-aos="fade-up"
+                            data-aos-delay={index * 100}
+                        >
+                            <CardHeader>
+                                <div className="mb-4">{info.icon}</div>
+                                <CardTitle className="text-lg sm:text-xl" style={{ color: "#8B5E3C" }}>
+                                    {info.title}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                {info.details.map((detail, i) => (
+                                    <p key={i} className="text-gray-700 text-sm sm:text-base mb-1">
+                                        {info.link && i === 0 ? (
+                                            <a href={info.link} className="hover:text-[#8B5E3C] transition-colors font-medium">
+                                                {detail}
+                                            </a>
+                                        ) : (
+                                            detail
+                                        )}
+                                    </p>
+                                ))}
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+
+                {/* MAIN CONTENT GRID */}
+                <div className="grid lg:grid-cols-5 gap-10 lg:gap-12">
+
+                    {/* CONTACT FORM - 3 columns */}
+                    <div className="lg:col-span-3" data-aos="fade-right">
+                        <Card className="border-2 border-gray-200 shadow-xl">
+                            <CardHeader>
+                                <CardTitle className="text-2xl sm:text-3xl" style={{ color: "#8B5E3C" }}>
+                                    Request a Free Quote
+                                </CardTitle>
+                                <CardDescription className="text-base">
+                                    Tell us about your project and we'll provide a detailed estimate
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <form onSubmit={handleSubmit} className="space-y-6">
+
+                                    {/* Name Fields */}
+                                    <div className="grid sm:grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="firstName">First Name *</Label>
+                                            <Input
+                                                id="firstName"
+                                                placeholder="John"
+                                                value={formData.firstName}
+                                                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                                                required
+                                                className="border-2 focus:border-[#8B5E3C]"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="lastName">Last Name *</Label>
+                                            <Input
+                                                id="lastName"
+                                                placeholder="Doe"
+                                                value={formData.lastName}
+                                                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                                                required
+                                                className="border-2 focus:border-[#8B5E3C]"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Contact Fields */}
+                                    <div className="grid sm:grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="email">Email Address *</Label>
+                                            <Input
+                                                id="email"
+                                                type="email"
+                                                placeholder="john@example.com"
+                                                value={formData.email}
+                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                                required
+                                                className="border-2 focus:border-[#8B5E3C]"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="phone">Phone Number *</Label>
+                                            <Input
+                                                id="phone"
+                                                type="tel"
+                                                placeholder="+254 700 000 000"
+                                                value={formData.phone}
+                                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                                required
+                                                className="border-2 focus:border-[#8B5E3C]"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Service Type */}
+                                    <div className="space-y-2">
+                                        <Label htmlFor="serviceType">Service Type *</Label>
+                                        <Select
+                                            value={formData.serviceType}
+                                            onValueChange={(value) => setFormData({ ...formData, serviceType: value })}
+                                            required
+                                        >
+                                            <SelectTrigger className="border-2 focus:border-[#8B5E3C]">
+                                                <SelectValue placeholder="Select a service" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {services.map((service) => (
+                                                    <SelectItem key={service.value} value={service.value}>
+                                                        <div className="flex items-center gap-2">
+                                                            {service.icon}
+                                                            <span>{service.label}</span>
+                                                        </div>
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+
+                                    {/* Project Details */}
+                                    <div className="grid sm:grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="projectLocation">Project Location</Label>
+                                            <Input
+                                                id="projectLocation"
+                                                placeholder="e.g., Nairobi, Naivasha"
+                                                value={formData.projectLocation}
+                                                onChange={(e) => setFormData({ ...formData, projectLocation: e.target.value })}
+                                                className="border-2 focus:border-[#8B5E3C]"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="budget">Budget Range (KSH)</Label>
+                                            <Select
+                                                value={formData.budget}
+                                                onValueChange={(value) => setFormData({ ...formData, budget: value })}
+                                            >
+                                                <SelectTrigger className="border-2 focus:border-[#8B5E3C]">
+                                                    <SelectValue placeholder="Select budget range" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="under-500k">Under 500K</SelectItem>
+                                                    <SelectItem value="500k-1m">500K - 1M</SelectItem>
+                                                    <SelectItem value="1m-2m">1M - 2M</SelectItem>
+                                                    <SelectItem value="2m-5m">2M - 5M</SelectItem>
+                                                    <SelectItem value="over-5m">Over 5M</SelectItem>
+                                                    <SelectItem value="flexible">Flexible</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                    </div>
+
+                                    {/* Timeline */}
+                                    <div className="space-y-2">
+                                        <Label htmlFor="timeline">Project Timeline</Label>
+                                        <Select
+                                            value={formData.timeline}
+                                            onValueChange={(value) => setFormData({ ...formData, timeline: value })}
+                                        >
+                                            <SelectTrigger className="border-2 focus:border-[#8B5E3C]">
+                                                <SelectValue placeholder="When do you want to start?" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="urgent">Urgent (Within 1 month)</SelectItem>
+                                                <SelectItem value="1-3months">1-3 months</SelectItem>
+                                                <SelectItem value="3-6months">3-6 months</SelectItem>
+                                                <SelectItem value="6-12months">6-12 months</SelectItem>
+                                                <SelectItem value="planning">Just planning</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+
+                                    {/* Message */}
+                                    <div className="space-y-2">
+                                        <Label htmlFor="message">Project Details *</Label>
+                                        <Textarea
+                                            id="message"
+                                            placeholder="Tell us about your project, requirements, and any specific questions you have..."
+                                            value={formData.message}
+                                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                            required
+                                            rows={5}
+                                            className="border-2 focus:border-[#8B5E3C] resize-none"
+                                        />
+                                    </div>
+
+                                    {/* Newsletter */}
+                                    <div className="flex items-center space-x-2">
+                                        <Checkbox
+                                            id="newsletter"
+                                            checked={formData.newsletter}
+                                            onCheckedChange={(checked) =>
+                                                setFormData({ ...formData, newsletter: checked as boolean })
+                                            }
+                                        />
+                                        <Label
+                                            htmlFor="newsletter"
+                                            className="text-sm font-normal cursor-pointer"
+                                        >
+                                            Subscribe to our newsletter for updates and offers
+                                        </Label>
+                                    </div>
+
+                                    {/* Submit Button */}
+                                    <Button
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className="w-full py-6 text-lg font-semibold shadow-lg hover:scale-105 transition-all"
+                                        style={{ background: "#8B5E3C", color: "white" }}
+                                    >
+                                        {isSubmitting ? (
+                                            "Sending..."
+                                        ) : submitStatus === "success" ? (
+                                            <span className="flex items-center justify-center gap-2">
+                                                <CheckCircle2 size={20} />
+                                                Sent Successfully!
+                                            </span>
+                                        ) : (
+                                            <span className="flex items-center justify-center gap-2">
+                                                <Send size={20} />
+                                                Send Message
+                                            </span>
+                                        )}
+                                    </Button>
+
+                                    {submitStatus === "success" && (
+                                        <p className="text-green-600 text-center text-sm">
+                                            Thank you! We'll get back to you within 24 hours.
+                                        </p>
+                                    )}
+
+                                </form>
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    {/* SIDEBAR - 2 columns */}
+                    <div className="lg:col-span-2 space-y-8" data-aos="fade-left">
+
+                        {/* Why Choose Us Card */}
+                        <Card className="border-2 border-gray-200">
+                            <CardHeader>
+                                <CardTitle className="text-xl sm:text-2xl" style={{ color: "#8B5E3C" }}>
+                                    Why Contact Us?
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                {[
+                                    "Free consultation and project assessment",
+                                    "Detailed quote within 48 hours",
+                                    "8+ years of experience in wooden construction",
+                                    "Transparent pricing with no hidden costs",
+                                    "Dedicated project manager for your build",
+                                    "Quality guarantee on all work",
+                                ].map((benefit, i) => (
+                                    <div key={i} className="flex items-start gap-3">
+                                        <CheckCircle2
+                                            size={20}
+                                            className="shrink-0 mt-0.5"
+                                            style={{ color: "#8B5E3C" }}
+                                        />
+                                        <span className="text-gray-700 text-sm sm:text-base">{benefit}</span>
+                                    </div>
+                                ))}
+                            </CardContent>
+                        </Card>
+
+                        {/* Map Card */}
+                        <Card className="border-2 border-gray-200">
+                            <CardHeader>
+                                <CardTitle className="text-xl sm:text-2xl" style={{ color: "#8B5E3C" }}>
+                                    Visit Our Office
+                                </CardTitle>
+                                <CardDescription>
+                                    Schedule a visit to see our showroom and discuss your project in person
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="relative w-full h-[200px] sm:h-[250px] rounded-lg overflow-hidden mb-4">
+                                    <Image
+                                        src="/contact/map.jpg"
+                                        alt="Office Location"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                                <Button
+                                    asChild
+                                    variant="outline"
+                                    className="w-full border-2 hover:scale-105 transition-all"
+                                    style={{ borderColor: "#8B5E3C", color: "#8B5E3C" }}
+                                >
+                                    <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
+                                        <MapPin size={18} className="mr-2" />
+                                        Get Directions
+                                    </a>
+                                </Button>
+                            </CardContent>
+                        </Card>
+
+                        
+                    </div>
+                </div>
+
             </div>
         </div>
-    );
+    )
 }
