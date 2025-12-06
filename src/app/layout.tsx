@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/core/Navbar";
 import Footer from "@/components/core/Footer";
-import AosInit from "@/components/core/AosInit"; 
+import AosInit from "@/components/core/AosInit";
+import TawkToChat from '@/components/TawkToChat';
 
 
 const geistSans = Geist({
@@ -34,10 +35,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white! text-gray-900 min-h-screen`}
       >
-        <AosInit />   
+        <AosInit />
         <Navbar />
-        <main className="pt-[120px] bg-white min-h-screen">{children}</main>
-        <Footer/>
+        <main className="pt-[120px] bg-white min-h-screen">{children}
+          <TawkToChat />
+        </main>
+        <Footer />
       </body>
     </html>
   );
