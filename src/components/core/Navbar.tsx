@@ -44,46 +44,94 @@ export default function Navbar() {
         <nav className="w-full fixed top-0 left-0 z-50 bg-white">
 
             {/* TOP BAR */}
-            <div className="w-full bg-brand-brownDark text-brand-white text-xs sm:text-sm py-2 sm:py-2.5 px-3 sm:px-6 flex items-center justify-between overflow-hidden">
+            <div className="w-full bg-brand-brownDark text-brand-white text-xs sm:text-sm py-2 sm:py-2.5 px-3 sm:px-6">
 
-                {/* Left */}
-                <div className="flex items-center gap-3 sm:gap-6 md:gap-8 flex-shrink min-w-0">
-                    <div className="flex items-center gap-1.5 sm:gap-2 group cursor-pointer flex-shrink-0">
-                        <Phone size={14} className="sm:w-4 sm:h-4" style={{ color: "#C49A6C" }} />
-                        <span className="font-medium group-hover:text-brand-brownLight transition-colors duration-200 whitespace-nowrap text-xs sm:text-sm">
-                            +254 789 104 438
-                        </span>
+                {/* Desktop/Tablet View - Horizontal Layout */}
+                <div className="hidden sm:flex items-center justify-between">
+                    {/* Left - Contact Info */}
+                    <div className="flex items-center gap-3 md:gap-6 lg:gap-8 shrink min-w-0">
+                        <div className="flex items-center gap-1.5 sm:gap-2 group cursor-pointer shrink-0">
+                            <Phone size={14} className="sm:w-4 sm:h-4" style={{ color: "#C49A6C" }} />
+                            <span className="font-medium group-hover:text-brand-brownLight transition-colors duration-200 whitespace-nowrap text-xs sm:text-sm">
+                                +254 789 104 438
+                            </span>
+                        </div>
+
+                        <div className="flex items-center gap-2 group cursor-pointer shrink-0">
+                            <Mail size={14} className="sm:w-4 sm:h-4" style={{ color: "#C49A6C" }} />
+                            <span className="font-medium group-hover:text-brand-brownLight transition-colors duration-200 whitespace-nowrap text-xs sm:text-sm">
+                                info@woodenhouses.co.ke
+                            </span>
+                        </div>
+
+                        <div className="hidden lg:flex items-center gap-2 group cursor-pointer shrink-0">
+                            <MapPin size={16} style={{ color: "#C49A6C" }} />
+                            <span className="font-medium group-hover:text-brand-brownLight transition-colors duration-200 whitespace-nowrap">
+                                Naivasha, Kenya
+                            </span>
+                        </div>
                     </div>
 
-                    <div className="hidden md:flex items-center gap-2 group cursor-pointer flex-shrink-0">
-                        <Mail size={16} style={{ color: "#C49A6C" }} />
-                        <span className="font-medium group-hover:text-brand-brownLight transition-colors duration-200 whitespace-nowrap">
-                            info@woodenhouses.co.ke
-                        </span>
-                    </div>
-
-                    <div className="hidden lg:flex items-center gap-2 group cursor-pointer flex-shrink-0">
-                        <MapPin size={16} style={{ color: "#C49A6C" }} />
-                        <span className="font-medium group-hover:text-brand-brownLight transition-colors duration-200 whitespace-nowrap">
-                            Naivasha, Kenya
-                        </span>
+                    {/* Right - Social Icons */}
+                    <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                        <Link href="#" className="hover:scale-110 transition-all">
+                            <Facebook size={16} className="sm:w-[18px] sm:h-[18px]" style={{ color: "#8B5E3C" }} />
+                        </Link>
+                        <Link href="#" className="hover:scale-110 transition-all">
+                            <Instagram size={16} className="sm:w-[18px] sm:h-[18px]" style={{ color: "#8B5E3C" }} />
+                        </Link>
+                        <Link href="#" className="hover:scale-110 transition-all">
+                            <Twitter size={18} style={{ color: "#8B5E3C" }} />
+                        </Link>
+                        <Link href="#" className="hover:scale-110 transition-all">
+                            <Youtube size={18} style={{ color: "#8B5E3C" }} />
+                        </Link>
                     </div>
                 </div>
 
-                {/* Right Social Icons */}
-                <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-                    <Link href="#" className="hover:scale-110 transition-all">
-                        <Facebook size={16} className="sm:w-[18px] sm:h-[18px]" style={{ color: "#8B5E3C" }} />
-                    </Link>
-                    <Link href="#" className="hover:scale-110 transition-all">
-                        <Instagram size={16} className="sm:w-[18px] sm:h-[18px]" style={{ color: "#8B5E3C" }} />
-                    </Link>
-                    <Link href="#" className="hover:scale-110 transition-all hidden sm:inline-block">
-                        <Twitter size={18} style={{ color: "#8B5E3C" }} />
-                    </Link>
-                    <Link href="#" className="hover:scale-110 transition-all hidden sm:inline-block">
-                        <Youtube size={18} style={{ color: "#8B5E3C" }} />
-                    </Link>
+                {/* Mobile View - Stacked Layout with ALL info */}
+                <div className="flex sm:hidden flex-col gap-2">
+                    {/* Row 1: Phone & Email */}
+                    <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-1.5 group cursor-pointer">
+                            <Phone size={14} style={{ color: "#C49A6C" }} />
+                            <span className="font-medium group-hover:text-brand-brownLight transition-colors duration-200 text-xs">
+                                +254 789 104 438
+                            </span>
+                        </div>
+
+                        <div className="flex items-center gap-1.5 group cursor-pointer">
+                            <Mail size={14} style={{ color: "#C49A6C" }} />
+                            <span className="font-medium group-hover:text-brand-brownLight transition-colors duration-200 text-xs">
+                                info@woodenhouses.co.ke
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* Row 2: Location & Social Icons */}
+                    <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-1.5 group cursor-pointer">
+                            <MapPin size={14} style={{ color: "#C49A6C" }} />
+                            <span className="font-medium group-hover:text-brand-brownLight transition-colors duration-200 text-xs">
+                                Naivasha, Kenya
+                            </span>
+                        </div>
+
+                        <div className="flex items-center gap-2.5">
+                            <Link href="#" className="hover:scale-110 transition-all">
+                                <Facebook size={16} style={{ color: "#8B5E3C" }} />
+                            </Link>
+                            <Link href="#" className="hover:scale-110 transition-all">
+                                <Instagram size={16} style={{ color: "#8B5E3C" }} />
+                            </Link>
+                            <Link href="#" className="hover:scale-110 transition-all">
+                                <Twitter size={16} style={{ color: "#8B5E3C" }} />
+                            </Link>
+                            <Link href="#" className="hover:scale-110 transition-all">
+                                <Youtube size={16} style={{ color: "#8B5E3C" }} />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -93,7 +141,7 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
 
                     {/* Logo */}
-                    <Link href="/" className="flex items-center flex-shrink-0">
+                    <Link href="/" className="flex items-center shrink-0">
                         <Image
                             src="/woodenhouse.png"
                             alt="WoodenHouses Kenya Logo"
@@ -146,7 +194,7 @@ export default function Navbar() {
                             </VisuallyHidden>
 
                             {/* Mobile Menu Header */}
-                            <div className="bg-gradient-to-r from-brand-brownDark to-brand-brown p-6 flex items-center justify-between">
+                            <div className="bg-linear-to-r from-brand-brownDark to-brand-brown p-6 flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                                         <Menu size={20} style={{ color: "white" }} />
