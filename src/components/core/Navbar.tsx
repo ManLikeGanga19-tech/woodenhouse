@@ -74,13 +74,13 @@ export default function Navbar() {
 
                     {/* Right - Social Icons */}
                     <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                        <Link href="#" className="hover:scale-110 transition-all">
+                        <Link href="https://www.facebook.com/mitchiehousing/" className="hover:scale-110 transition-all">
                             <Facebook size={16} className="sm:w-[18px] sm:h-[18px]" style={{ color: "#8B5E3C" }} />
                         </Link>
-                        <Link href="#" className="hover:scale-110 transition-all">
+                        <Link href="https://www.instagram.com/woodenhouseskenya/" className="hover:scale-110 transition-all">
                             <Instagram size={16} className="sm:w-[18px] sm:h-[18px]" style={{ color: "#8B5E3C" }} />
                         </Link>
-                        <Link href="#" className="hover:scale-110 transition-all">
+                        <Link href="https://x.com/wooden_kenya/" className="hover:scale-110 transition-all">
                             <Twitter size={18} style={{ color: "#8B5E3C" }} />
                         </Link>
                         <Link href="#" className="hover:scale-110 transition-all">

@@ -90,13 +90,13 @@ export default function Footer() {
                             data-aos-duration="800"
                             data-aos-delay="500"
                         >
-                            <Link href="#" className="hover:scale-110 transition-all">
+                            <Link href="https://www.facebook.com/mitchiehousing/" className="hover:scale-110 transition-all">
                                 <Facebook size={22} className="sm:w-6 sm:h-6" style={{ color: "#C49A6C" }} />
                             </Link>
-                            <Link href="#" className="hover:scale-110 transition-all">
+                            <Link href="https://www.instagram.com/woodenhouseskenya/" className="hover:scale-110 transition-all">
                                 <Instagram size={22} className="sm:w-6 sm:h-6" style={{ color: "#C49A6C" }} />
                             </Link>
-                            <Link href="#" className="hover:scale-110 transition-all">
+                            <Link href="https://x.com/wooden_kenya/" className="hover:scale-110 transition-all">
                                 <Twitter size={22} className="sm:w-6 sm:h-6" style={{ color: "#C49A6C" }} />
                             </Link>
                             <Link href="#" className="hover:scale-110 transition-all">
