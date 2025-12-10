@@ -60,7 +60,7 @@ export default function Navbar() {
                         <div className="flex items-center gap-2 group cursor-pointer shrink-0">
                             <Mail size={14} className="sm:w-4 sm:h-4" style={{ color: "#C49A6C" }} />
                             <span className="font-medium group-hover:text-brand-brownLight transition-colors duration-200 whitespace-nowrap text-xs sm:text-sm">
-                                info@woodenhouses.co.ke
+                                info@woodenhouses.com
                             </span>
                         </div>
 
